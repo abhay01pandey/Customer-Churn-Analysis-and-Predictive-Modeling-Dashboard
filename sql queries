@@ -1,0 +1,90 @@
+# SQL QUERIES- 
+
+# Database Creation
+create DATABASE db_churn;
+use db_churn;
+
+# Initial Data Check
+select * from customer_data;
+
+# Demographic Analysis: Gender Distribution
+SELECT Gender, COUNT(Gender) AS TotalCount, 
+COUNT(Gender) / (SELECT COUNT(*) FROM customer_data) * 100 AS Percentage
+FROM customer_data
+GROUP BY Gender;
+
+# Account Analysis: Contract Type Distribution
+SELECT Contract, COUNT(Contract) AS TotalCount, 
+COUNT(Contract) / (SELECT COUNT(*) FROM customer_data) * 1.0 AS Percentage
+FROM customer_data
+GROUP BY Contract;
+
+# Revenue and Status Analysis
+SELECT Customer_Status, COUNT(Customer_Status) AS TotalCount, SUM(Total_Revenue) as TotalRev,
+SUM(Total_Revenue) / (SELECT SUM(Total_Revenue) FROM customer_data) * 100 AS RevPercentage
+FROM customer_data
+GROUP BY Customer_Status;
+
+# Geographic Analysis: State Distribution
+SELECT State, COUNT(State) AS TotalCount, 
+COUNT(State) / (SELECT COUNT(*) FROM customer_data) * 100 AS Percentage
+FROM customer_data
+GROUP BY State
+ORDER BY Percentage desc;
+
+# Service Exploration: Unique Internet Types
+SELECT DISTINCT Internet_Type
+FROM customer_data;
+
+# Data Transformation: Creation of Primary Analysis Table (prod_Churn)
+This table is used as the primary source for the Power BI report.
+
+CREATE TABLE prod_Churn AS
+SELECT 
+  Customer_ID,
+  Gender,
+  Age,
+  Married,
+  State,
+  Number_of_Referrals,
+  Tenure_in_Months,
+  Value_Deal,
+  Phone_Service,
+  Multiple_Lines,
+  Internet_Service,
+  Internet_Type,
+  Online_Security,
+  Online_Backup,
+  Device_Protection_Plan,
+  Premium_Support,
+  Streaming_TV,
+  Streaming_Movies,
+  Streaming_Music,
+  Unlimited_Data,
+  Contract,
+  Paperless_Billing,
+  Payment_Method,
+  Monthly_Charge,
+  Total_Charges,
+  Total_Refunds,
+  Total_Extra_Data_Charges,
+  Total_Long_Distance_Charges,
+  Total_Revenue,
+  Customer_Status,
+  Churn_Category,
+  Churn_Reason
+FROM customer_data;
+
+# View Creation: Core Churn Analysis Dataset (vw_ChurnData)
+Filters out 'Joined' customers to focus on those who have either churned or stayed.
+
+CREATE VIEW vw_ChurnData AS
+SELECT * FROM prod_Churn 
+WHERE Customer_Status IN ('Churned', 'Stayed');
+
+# View Creation: New Joiners Dataset (vw_JoinData)
+Used to calculate the "New Joiners" metric in the Power BI summary.
+
+CREATE VIEW vw_JoinData AS
+SELECT * FROM prod_Churn 
+WHERE Customer_Status = 'Joined';
