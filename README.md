@@ -27,8 +27,6 @@ Visualization & Dashboarding: Power Bl
 
 Spreadsheet Software: Microsoft Excel
 
-Real World Application -
-
 # Real-World Application- 
 Service Quality: Implement staff retraining to fix service attitude issues.
 
