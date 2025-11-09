@@ -46,7 +46,7 @@ Payment Method Correlation: The Mailed Check payment method had a disproportiona
 
 Customer Lifecycle Risk: Churn is highest among customers with shorter tenure (0-6 Months), suggesting poor initial onboarding or early service dissatisfaction.
 
-# Results and Conclusion
+# Results 
 The analysis successfully quantified the scale of the retention problem (27.0% Churn Rate) and identified clear, data-driven targets for intervention.
 
 Key Outcomes:
