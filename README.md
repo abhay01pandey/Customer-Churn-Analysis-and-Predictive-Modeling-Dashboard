@@ -3,7 +3,7 @@ This project performs an end-to-end Customer Churn Analysis on a telecommunicati
 The objective is to support data driven retention strategies using SQL based transformation and Power BI visualization.
 
 ## Power BI Dashboard
-![Customer Churn Dashboard](./dashboard_screenshot.png)
+![Customer Churn Dashboard]([./dashboard_screenshot.png](https://github.com/abhay01pandey/Customer-Churn-Analysis-and-Predictive-Modeling-Dashboard/blob/5dafa73529f26b090a6e7b0baeeff8be7622beda/churn%20dashboard.png))
 
 ## Dataset
 
