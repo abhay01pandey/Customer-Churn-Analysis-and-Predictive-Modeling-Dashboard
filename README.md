@@ -1,58 +1,101 @@
-# Overview-
-This project executes a comprehensive Customer Churn Analysis using a telecommunications dataset. The core business objective was to calculate the overall Churn Rate, identify the primary drivers of customer attrition across demographics, services, and account metrics, and quantify the revenue impact of churn. The final output is a high-level, interactive Power BI Dashboard built on data transformed and aggregated using SQL.
+## Project Overview
+This project performs an end-to-end Customer Churn Analysis on a telecommunications dataset to quantify customer attrition, identify churn drivers and measure revenue impact.  
+The objective is to support data driven retention strategies using SQL based transformation and Power BI visualization.
 
-# Dataset & Tools Used
-Dataset:
+## Power BI Dashboard
+![Customer Churn Dashboard](./dashboard_screenshot.png)
 
-The project uses a sample Telecommunications Customer Records dataset containing 20+ variables related to customer account status, services, contract type, monthly charges, and churn status.
+## Dataset
 
-Tools:
+### Dataset Summary
+- Domain: Telecommunications  
+- Total Customers: 6,418  
+- Total Features: 20+  
 
-Data Processing: MySQL was the primary platform used for initial data exploration, cleaning, transformation, aggregation, and the creation of optimized views (vw_ChurnData, vw_JoinData).
+### Key Attributes
+- Customer Demographics: Gender, Age, Marital Status, State  
+- Account Information: Contract Type, Tenure, Monthly Charges  
+- Services: Internet Type, Phone Service, Add-ons  
+- Billing & Payments: Payment Method, Paperless Billing  
+- Target Variable: Customer_Status  
 
-Visualization: Power BI was used to calculate primary KPIs, design the dashboard, and create interactive visualizations of the churn drivers.
+## Tools & Technologies
+- MySQL – Data exploration, cleaning, transformation  
+- Power BI – KPI calculation and dashboard creation  
+- GitHub – Version control and documentation  
 
-# Workflow
-Data Ingestion and Exploration (SQL):
+## Workflow
 
-Loaded raw customer data into a database (db_churn).
+### 1. Data Ingestion
+- Created database db_churn
+- Loaded raw customer dataset into MySQL
+- Performed initial sanity checks using SELECT and COUNT queries
 
-Executed initial queries (SELECT *, COUNT) to understand the distribution of key variables (Gender, State, Contract).
+### 2. Data Exploration (SQL)
+- Analyzed demographic distribution (Gender, State)
+- Evaluated contract type distribution
+- Examined customer status and revenue contribution
+- Identified available service categories
 
-Data Cleaning and Transformation (SQL):
+### 3. Data Transformation (SQL)
+- Selected relevant analytical columns
+- Standardized categorical values
+- Created a production-ready table:
+  - prod_Churn
 
-Data Aggregation: Calculated total counts and percentages for demographics, service types, and account breakdown.
+### 4. Analytical View Creation (SQL)
+- Created churn-focused views to optimize Power BI performance:
+  - vw_ChurnData – Churned and Stayed customers
+  - vw_JoinData – Newly joined customers
 
-Revenue Quantification: Calculated total revenue and revenue percentage by Customer_Status.
+### 5. KPI Calculation (Power BI)
+- Total Customers
+- Total Churn
+- Churn Rate
+- New Joiners
 
-Structured Output: Created a final production table (prod_Churn) and analytical views (vw_ChurnData, vw_JoinData) to ensure the data model was optimized for Power BI consumption.
+### 6. Data Visualization (Power BI)
+- Built an interactive dashboard analyzing churn by:
+  - Demographics
+  - Geography
+  - Services
+  - Payment Methods
+  - Contract Types
+  - Tenure Groups
 
-Visualization and Reporting (Power BI):
+## Dashboard Insights
 
-Connected Power BI directly to the final SQL views for real time reporting.
+### Contract Risk
+- Month-to-Month contracts account for 46.5% of total churn
 
-Calculated primary KPIs, including Total Churn (1,732) and the 27.0% Churn Rate.
+### Service-Level Churn
+- Fiber Optic internet users show the highest churn rate at 41.1%
 
-Designed the dashboard to visualize patterns across high risk factors like Payment Method, Internet Type, and Tenure Groups.
+### Payment Method Impact
+- Mailed Check customers have a churn rate of 37.8%, significantly higher than digital methods
 
-# Dashboard Insights
-The final Power BI dashboard revealed several high-impact insights crucial for retention strategy:
+### Customer Lifecycle Risk
+- Highest churn occurs within the first 0–6 months of tenure
 
-Critical Contract Risk: The Month-to-Month contract type is the highest risk category, accounting for 46.5% of total attrition.
+## Results
+- Overall churn rate identified at 27.0%
+- High-risk customer segments clearly defined
+- Revenue impact of churn quantified
 
-Service Quality Flag: Customers utilizing Fiber Optic internet service showed the highest single-service churn rate at 41.1%, indicating potential quality or pricing issues within that product line.
+## Business Recommendations
+- Target Month-to-Month customers with retention offers
+- Conduct service quality review for Fiber Optic internet
+- Encourage digital payment adoption
+- Improve onboarding experience for new customers
 
-Payment Method Correlation: The Mailed Check payment method had a disproportionately high churn rate (37.8%) compared to digital methods.
+## How to Run the Project
+1. Clone the repository
+2. Load dataset into MySQL
+3. Execute SQL scripts for analysis and transformation
+4. Create analytical views
+5. Connect Power BI to MySQL
+6. Open the dashboard and explore insights
 
-Customer Lifecycle Risk: Churn is highest among customers with shorter tenure (0-6 Months), suggesting poor initial onboarding or early service dissatisfaction.
-
-# Results 
-The analysis successfully quantified the scale of the retention problem (27.0% Churn Rate) and identified clear, data-driven targets for intervention.
-
-Key Outcomes:
-
-Retention Focus Shift: Strategically re-focus retention marketing efforts on customers with Month-to-Month contracts and those using Mailed Check payments.
-
-Product Deep Dive: Recommended an immediate technical and customer service review of the Fiber Optic service line to address the high rate of service-related churn.
-
-Onboarding Improvement: Insights highlight the need to improve the customer experience in the first six months of service to combat early attrition.
+## Author
+Abhay Pandey  
+LinkedIn: www.linkedin.com/in/abhaypandey18
